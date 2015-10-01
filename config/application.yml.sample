@@ -43,6 +43,7 @@ test:
   <<: *defaults
   object_store_root: "<%=Rails.root%>/spec/fixtures/local_object_store"
   trim_bucket_url:      "file://<%=Rails.root%>/spec/fixtures/local_object_store"
+  object_store_metadata_exports: 'export'
   processing_url: "SKIP"
   repository_url: "http://stage-repository01.lib.tufts.edu:8080"
   preview_fedora_url: 'http://localhost:8983/fedora'
