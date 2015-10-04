@@ -15,7 +15,11 @@ class BatchPresenter
   end
 
   def review_status
-    items.all? { |m| m.reviewed? } ? "Complete" : "Incomplete"
+    begin
+      items.all? { |m| m.reviewed? } ? "Complete" : "Incomplete"
+    rescue
+      "Corrupt"
+    end
   end
 
   def status_text
