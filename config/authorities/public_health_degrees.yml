@@ -17,3 +17,7 @@ terms:
     term: 'PA/MPH'
   - id: MSHC
     term: 'MS in Health Communications'
+  - id: MPH	
+    term: 'MPH'
+  - id: MSPREP
+    term: 'MS in Pain Research Education and Policy'
