@@ -49,6 +49,25 @@ class BuildRecordService
   end
 
   def rels_ext
+
+    rels_ext = node.xpath("./rel:*", {"rel" => "info:fedora/fedora-system:def/relations-external#"}).map do |element|
+      { 'relationship_name' => element.name.underscore.to_sym,
+        'relationship_value' => element.content }
+    end
+    rcr = node.xpath("./rcr:*", {"rcr" => "http://dca.lib.tufts.edu/ontology/rcr#"}).map do |element|
+      { 'relationship_name' => element.name.underscore.to_sym,
+        'relationship_value' => element.content }
+    end
+    
+    tdr = node.xpath("./tdr:*", {"tdr" => "http://dca.lib.tufts.edu/ontology/tdr#"}).map do |element|
+      { 'relationship_name' => element.name.underscore.to_sym,
+        'relationship_value' => element.content }
+    end
+
+    { 'relationship_attributes' => rels_ext + rcr + tdr }
+  end
+
+  def rels_ext
     rels_ext = node.xpath("./rel:*", {"rel" => "info:fedora/fedora-system:def/relations-external#"}).map do |element|
       { 'relationship_name' => element.name.underscore.to_sym,
         'relationship_value' => element.content }
