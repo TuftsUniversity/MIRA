@@ -15,7 +15,7 @@ class PublicHealth < Contribution
 
   private
   def creatordept
-    'UA157.005'
+    'UA187.005'
   end
 
   def long_degree
@@ -23,6 +23,6 @@ class PublicHealth < Contribution
   end
 
   def parent_collection
-    'tufts:UA069.001.DO.UA157'
+    'tufts:UA069.001.DO.UA187'
   end
 end
