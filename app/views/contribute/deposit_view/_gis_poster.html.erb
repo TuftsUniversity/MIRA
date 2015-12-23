@@ -1,0 +1,65 @@
+<%= javascript_include_tag "gis_posters" %>
+
+<%# NOTE: this form uses bootstrap_form_for and bootstrap_forms helpers - see: https://github.com/sethvargo/bootstrap_forms %>
+
+
+<%= f.text_field :title, label: 'Title', help_block: 'Please limit titles to 250 characters or less.', required: 'required' %>
+
+<%= f.text_field :creator, value: current_user.display_name, label: 'Contributor', required: 'required'  %>
+<div class="checkbox_container">
+<%= f.collection_check_boxes :degrees, GisHelper.degrees, :last, :last %>
+</div>
+<div class="checkbox_container">
+<%= f.collection_check_boxes :schools, GisHelper.gis_schools, :first, :last %>
+</div>
+<div id="department_picker">
+<%= f.collection_check_boxes :departments, GisHelper.departments, :first, :last %>
+</div>
+<%= f.collection_check_boxes :courses, GisHelper.gis_courses, :first, :last %>
+
+<div class="form-group">
+  <label class="control-label" for="semester">Semester</label>
+  <div class="checkbox">
+      <select class="form-control double-selection" name="contribution[term]" id="term">
+          <option <%= 'selected="selected"' if @contribution.term == "Fall"%>>Fall</option>
+          <option <%= 'selected="selected"' if @contribution.term == "Spring"%>>Spring</option>
+          <option <%= 'selected="selected"' if @contribution.term == "Summer"%>>Summer</option>
+      </select>
+      <select data-selection="<%= @contribution.year %>" class="form-control double-selection" name="contribution[year]" id="year">
+      </select>
+  </div>
+</div>
+
+<%= f.hidden_field :description, value: 'throw away' %>
+<%= f.text_field :geonames_placeholder, label: 'Place Keywords', help_block: 'Pick some keywords', class: 'geonames' %>
+<div id="geotextarea" contenteditable="false">
+  <% unless @contribution.geonames.nil? %>
+      <% @contribution.geonames.each do |item| %>
+          <button type="button" class="remove-geoname btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"><span>&nbsp;<%= item %></span>
+    <input type="hidden" name="contribution[geonames][]" value="<%= item %>"></span></button>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <label class="control-label" for="themes">Thematic Category</label>
+  <div class="checkbox">
+  <select class="form-control double-selection" id="themes">
+
+  </select>
+  <select class="form-control double-selection" id="topics">
+    <%= raw GisHelper.gis_categories_options %>
+  </select>
+  </div>
+</div>
+<div id="categories_textarea">
+  <% unless @contribution.topics.nil? %>
+      <% @contribution.topics.each do |item| %>
+          <button type="button" class="remove-geoname btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"><span>&nbsp;<%= item %></span>
+    <input type="hidden" name="contribution[topics][]" value="<%= item %>"></span></button>
+      <% end %>
+  <% end %>
+</div>
+<div class="checkbox_container">
+<%= f.collection_check_boxes :methodological_keywords, GisHelper.methodological_keywords, :first, :last %>
+</div>
