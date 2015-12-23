@@ -1,5 +1,7 @@
 class ContributeController < ApplicationController
 
+  include GisHelper
+
   skip_before_filter :authenticate_user!, only: [:index, :license, :redirect]
   before_filter :load_deposit_type, only: [:new, :create]
 
