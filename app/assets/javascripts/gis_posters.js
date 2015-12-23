@@ -8,7 +8,7 @@ $(function () {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
             // http://www.geonames.org/export/geonames-search.html
-            url: 'http://api.geonames.org/searchJSON?name=%QUERY&maxRows=12&username=' + geoNamesUsername + '&lang=en',
+            url: '//api.geonames.org/searchJSON?name=%QUERY&maxRows=12&username=' + geoNamesUsername + '&lang=en',
             wildcard: '%QUERY',
             filter: function (parsedResponse) {
                 var result = [];
