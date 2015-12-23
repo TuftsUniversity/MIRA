@@ -23,5 +23,11 @@
 //= require jquery-fileupload
 //= require batch_edit
 //= require attachments
-//= require_tree .
-//
+//= require handlebars-v4.0.5
+//= require contribute/deposit_view
+//= require batch_export_button
+//= require batch_select_all
+//= require batches
+//= require contribute
+//= require deposit_types
+//= require generics
