@@ -7,15 +7,15 @@
 
 <%= f.text_field :creator, value: current_user.display_name, label: 'Contributor', required: 'required'  %>
 <div class="checkbox_container">
-<%= f.collection_check_boxes :degrees, GisHelper.degrees, :last, :last %>
+<%= f.collection_check_boxes :degrees, GisHelper.degrees, :last, :last, help: 'Degree which you were persuing while working on this poster.' %>
 </div>
 <div class="checkbox_container">
-<%= f.collection_check_boxes :schools, GisHelper.gis_schools, :first, :last %>
+<%= f.collection_check_boxes :schools, GisHelper.gis_schools, :first, :last, help: 'Please specify your school affiliation(s).' %>
 </div>
 <div id="department_picker">
-<%= f.collection_check_boxes :departments, GisHelper.departments, :first, :last %>
+<%= f.collection_check_boxes :departments, GisHelper.departments, :first, :last, help: 'Department(s) you were affiliated with while working on this poster.' %>
 </div>
-<%= f.collection_check_boxes :courses, GisHelper.gis_courses, :first, :last %>
+<%= f.collection_check_boxes :courses, GisHelper.gis_courses, :first, :last, help: 'Course(s) in which this poster was completed.' %>
 
 <div class="form-group">
   <label class="control-label" for="semester">Semester</label>
@@ -28,10 +28,12 @@
       <select data-selection="<%= @contribution.year %>" class="form-control double-selection" name="contribution[year]" id="year">
       </select>
   </div>
+  <span class="help-block">Semester in which this poster was completed.</span>
 </div>
 
 <%= f.hidden_field :description, value: 'throw away' %>
-<%= f.text_field :geonames_placeholder, label: 'Place Keywords', help_block: 'Pick some keywords', class: 'geonames' %>
+<%= f.text_field :geonames_placeholder, label: 'Place Keywords', help_block: 'Pick some keywords', class: 'geonames', help: 'Please select places this poster pertains to. Note: field with autocomplete with values via GeoNames API' %>
+
 <div id="geotextarea" contenteditable="false">
   <% unless @contribution.geonames.nil? %>
       <% @contribution.geonames.each do |item| %>
@@ -39,7 +41,9 @@
     <input type="hidden" name="contribution[geonames][]" value="<%= item %>"></span></button>
       <% end %>
   <% end %>
+
 </div>
+
 
 <div class="form-group">
   <label class="control-label" for="themes">Thematic Category</label>
@@ -50,8 +54,11 @@
   <select class="form-control double-selection" id="topics">
     <%= raw GisHelper.gis_categories_options %>
   </select>
+    <span class="help-block">Please select categories this poster pertains to.</span>
   </div>
+
 </div>
+
 <div id="categories_textarea">
   <% unless @contribution.topics.nil? %>
       <% @contribution.topics.each do |item| %>
@@ -61,5 +68,5 @@
   <% end %>
 </div>
 <div class="checkbox_container">
-<%= f.collection_check_boxes :methodological_keywords, GisHelper.methodological_keywords, :first, :last %>
+<%= f.collection_check_boxes :methodological_keywords, GisHelper.methodological_keywords, :first, :last, help: 'Please select methodologies used in this project.' %>
 </div>
