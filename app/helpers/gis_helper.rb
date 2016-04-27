@@ -4,9 +4,9 @@ module GisHelper
   end
 
   def self.gis_schools
-    Qa::Authorities::Local.subauthority_for('gis_schools').all.map do |element|
-      [element[:label], element[:id]]
-    end
+    csv_data = CSV.read(Rails.root.join('config', 'authorities', 'gis_schools.csv'), { headers: true, return_headers: false })
+    string_data = csv_data.map {|row| row.map {|cell| cell[1].strip } }
+    string_data
   end
 
   def self.departments
@@ -15,7 +15,7 @@ module GisHelper
     csv_data.delete('school_id')
     csv_data.delete('dept_id')
   #  headers = csv_data.shift.map {|i| i.to_s }
-    string_data = csv_data.map {|row| row.map {|cell| cell[1] } }
+    string_data = csv_data.map {|row| row.map {|cell| cell[1].strip } }
   #  array_of_hashes = string_data.map {|row| Hash[*headers.zip(row).flatten] }
 
     string_data
