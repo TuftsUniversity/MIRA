@@ -80,7 +80,7 @@ class RecordsController < ApplicationController
 
   def destroy
     # set the flash using the title, before we delete it and the title is not available.
-    flash[:notice] = "\"#{@record.title}\" has been purged"
+    flash[:notice] = "\"#{@record.pid}\" has been purged"
     PurgeService.new(@record, current_user.id).run
     redirect_to root_path
   end

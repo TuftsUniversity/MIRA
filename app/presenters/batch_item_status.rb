@@ -15,7 +15,11 @@ class BatchItemStatus
   end
 
   def record_title
-    record.title
+    begin 
+     record.title
+    rescue
+     "BAD TITLE"
+    end
   end
 
   # An Xml Import batch has one pids is mapped to the uploaded files
@@ -24,7 +28,11 @@ class BatchItemStatus
   end
 
   def reviewed?
-    record.reviewed?
+    begin
+      record.reviewed?
+    rescue
+      false
+    end
   end
 
   def status
