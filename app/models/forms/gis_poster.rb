@@ -13,11 +13,11 @@ class GisPoster < GenericTischDeposit
   def copy_attributes
    attributes = self.class.attributes
    @tufts_pdf.title= send(:title) unless send(:title).nil?
-   @tufts_pdf.description= (send(:degrees).nil? ? '' : send(:degrees)) + (send(:courses).nil? ? '' : send(:courses))
+   @tufts_pdf.description= (send(:degrees).nil? ? [] : Array(send(:degrees))) + (send(:courses).nil? ? [] : Array(send(:courses)))
    @tufts_pdf.creator= [(send(:creator) unless send(:creator).nil?)]
    @tufts_pdf.license= license_data(@tufts_pdf)
-   @tufts_pdf.subject= (send(:schools).nil? ? '' : send(:schools)) + (send(:departments).nil? ? '' : send(:departments)) + (send(:topics).nil? ? '' : send(:topics)) + (send(:methodological_keywords).nil? ? '' : send(:methodological_keywords))
-   @tufts_pdf.geogname= send(:geonames) unless send(:geonames).nil?
+   @tufts_pdf.subject= (send(:schools).nil? ? [] : Array(send(:schools))) + (send(:departments).nil? ? [] : Array(send(:departments))) + (send(:topics).nil? ? [] : Array(send(:topics))) + (send(:methodological_keywords).nil? ? [] : Array(send(:methodological_keywords)))
+   @tufts_pdf.geogname= Array(send(:geonames)) unless send(:geonames).nil?
    @tufts_pdf.type= ['text']
 
 
