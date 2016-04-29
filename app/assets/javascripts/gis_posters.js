@@ -1,14 +1,15 @@
 $(function () {
     var geoNamesUsername = 'mkorcy';
 // Instantiate the Bloodhound suggestion engine
-    var movies = new Bloodhound({
+    var places = new Bloodhound({
         datumTokenizer: function (datum) {
             return Bloodhound.tokenizers.whitespace(datum.name);
         },
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
             // http://www.geonames.org/export/geonames-search.html
-            url: '//api.geonames.org/searchJSON?name=%QUERY&maxRows=12&username=' + geoNamesUsername + '&lang=en',
+            url: 'https://mira.lib.tufts.edu/geonames/searchJSON?name=%QUERY&featureCode=PCL&featureCode=ADM1&featureCode=ADM2&featureCode=ADM2H&&featureCode=ADMD&' +
+                'featureCode=PPL&featureCode=PPLS&featureCode=OCN&maxRows=12&username=' + geoNamesUsername + '&lang=en',
             wildcard: '%QUERY',
             filter: function (parsedResponse) {
                 var result = [];
@@ -28,24 +29,24 @@ $(function () {
     });
 
 // Initialize the Bloodhound suggestion engine
-    movies.initialize();
+    places.initialize();
     var $myTextarea = $('#geotextarea');
 
 
 // Instantiate the Typeahead UI
     $('.geonames').typeahead(null, {
         displayKey: 'value',
-        source: movies.ttAdapter(),
+        source: places.ttAdapter(),
         templates: {
-            suggestion: Handlebars.compile('<div data-geoid="{{geonameId}}">{{name}} - {{adminName1}} - {{countryName}}</div>')
+            suggestion: Handlebars.compile('<div data-geoid="{{geonameId}}">{{name}} {{#if adminName1}}- {{/if}}{{adminName1}} {{#if countryName}}- {{/if}}{{countryName}}</div>')
         }
     });
 
     $('.geonames').on('typeahead:selected', function (item, datum, name) {
-        var geoname = datum.name + (datum.adminName1 === '' ? ' -- ' : (' -- ' + datum.adminName1 + ' -- ')) + datum.countryName;
+        var geoname = datum.name + (datum.adminName1 === '' || datum.adminName1 === undefined ? '' : (' -- ' + datum.adminName1)) + (datum.countryName === undefined || datum.countryName === '' ? '' : (' -- ' + datum.countryName));
         if ($myTextarea.text().indexOf(geoname) < 0) {
             $myTextarea.append('<button type="button" class="remove-geoname btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true">' +
-                '<span data-geoid="' + datum.geonameId + '">&nbsp;' + geoname + '</span>' +
+                '<span class="pill" data-geoid="' + datum.geonameId + '">&nbsp;' + geoname + '</span>' +
                 '<input type="hidden" name="contribution[geonames][]" value="' + geoname + '"/></span></button>');
         }
         return true;
@@ -119,7 +120,7 @@ $(function () {
             var theme = $('#themes').val() + ' -- ' + e.target.value;
             if ($('#categories_textarea').text().indexOf(theme) < 0) {
                 $('#categories_textarea').append('<button type="button" class="remove-geoname btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true">' +
-                    '<span>&nbsp;' + theme + '</span><input type="hidden" name="contribution[topics][]" value="' + theme + '">' +
+                    '<span class="pill">&nbsp;' + theme + '</span><input type="hidden" name="contribution[topics][]" value="' + theme + '">' +
                     '</span></button>');
             }
         }
