@@ -365,7 +365,7 @@ describe RecordsController do
         delete :destroy, id: audio
 
         expect(response).to redirect_to(Tufts::Application.routes.url_helpers.root_path)
-        expect(flash[:notice]).to eq '"My title2" has been purged'
+        expect(flash[:notice]).to eq "\"#{audio.pid}\" has been purged"
       end
     end
   end
