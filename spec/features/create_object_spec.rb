@@ -58,7 +58,7 @@ feature 'Admin user creates document' do
 
     # Now Purge it
     click_link 'Purge'
-    expect(page).to have_selector('div.alert', text: '"My title to be purged" has been purged')
+    expect(page).to have_selector('div.alert', text: "\"#{pid.gsub(/tufts/,'draft')}\" has been purged")
 
     # Now create another object with the recycled identifier
     visit root_path
