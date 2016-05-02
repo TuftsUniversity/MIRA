@@ -16,8 +16,7 @@ feature 'Admin user purges document' do
   scenario 'with a TuftsAudio' do
     visit catalog_path(audio)
     click_link 'Purge'
-    expect(page).to have_selector('div.alert', text: '"Very unique title" has been purged')
-
+    expect(page).to have_selector('div.alert', text: "\"#{audio.pid}\" has been purged")
     fill_in 'q', with: 'Very unique title'
     click_button 'search'
     expect(page).to have_text('No entries found')
