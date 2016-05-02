@@ -4,7 +4,7 @@ class GisPoster < GenericTischDeposit
                      :term, :year, :topics, :geonames_placeholder,
                      :degree,
                      :description, :creator, :contributor, :embargo,
-                     :bibliographic_citation, :subject, :attachment, :license]
+                     :bibliographic_citation, :subject, :corpname, :attachment, :license]
   #def copy_attributes
   #  super
   #  @tufts_pdf.description = ["#{description}  Submitted in partial fulfillment of the grant requirement of the Tufts Summer Scholars Program."]
@@ -16,7 +16,8 @@ class GisPoster < GenericTischDeposit
    @tufts_pdf.description= (send(:degrees).nil? ? [] : Array(send(:degrees))) + (send(:courses).nil? ? [] : Array(send(:courses)))
    @tufts_pdf.creator= [(send(:creator) unless send(:creator).nil?)]
    @tufts_pdf.license= license_data(@tufts_pdf)
-   @tufts_pdf.subject= (send(:schools).nil? ? [] : Array(send(:schools))) + (send(:departments).nil? ? [] : Array(send(:departments))) + (send(:topics).nil? ? [] : Array(send(:topics))) + (send(:methodological_keywords).nil? ? [] : Array(send(:methodological_keywords)))
+   @tufts_pdf.corpname= (send(:schools).nil? ? [] : Array(send(:schools))) + (send(:departments).nil? ? [] : Array(send(:departments)))
+   @tufts_pdf.subject= (send(:topics).nil? ? [] : Array(send(:topics))) + (send(:methodological_keywords).nil? ? [] : Array(send(:methodological_keywords)))
    @tufts_pdf.geogname= Array(send(:geonames)) unless send(:geonames).nil?
    @tufts_pdf.type= ['text']
 
