@@ -61,7 +61,7 @@ $(function () {
         var selected_year = $('#year').data('selection');
         year = new Date().getFullYear() + 1;
 
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 10; i++) {
             var option = document.createElement("option");
             if (year === selected_year) {
                 $(option).prop({selected: true});
