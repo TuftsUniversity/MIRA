@@ -23,8 +23,31 @@ describe CatalogHelper do
     end
   end
 
+  describe 'visibility' do
+    context 'for a restricted document' do
+      let(:document) { double('fake-document', visibility: 'authenticated') }
+      let(:options) { {} }
 
-  describe 'workflow_status_indicator' do
+      subject { visibility_indicator(document, options) }
+
+      it 'has the documents visibility text and label-info as class'  do
+        expect(subject).to eq('<span class="label label-info">Tufts University</span>')
+      end
+    end
+
+    context 'for an open document' do
+      let(:document) { double('fake-document', visibility: 'open') }
+      let(:options) { {} }
+
+      subject { visibility_indicator(document, options) }
+
+      it 'has the documents visibility text and label-success as class'  do
+        expect(subject).to eq('<span class="label label-success">Open</span>')
+      end
+    end
+  end
+
+    describe 'workflow_status_indicator' do
     let(:document) { double('fake-document', workflow_status: "some-workflow-status") }
     let(:options) { {} }
 
