@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/TuftsUniversity/tufts_models.git
-  revision: 84c20ac010c1e1141a7e2f854b0af829f4da05a4
-  tag: 4.0.4
+  revision: 73bc6691f5556d684dab5bad54bc62f87e22a8c9
+  tag: 4.0.7
   specs:
     tufts_models (0.0.1)
       active-fedora (~> 7.1)
