@@ -56,3 +56,12 @@ en:
         TuftsRCR: 'Collection creator'
         TuftsTEI: 'TEI'
         TuftsVideo: 'Video'
+  visibility:
+    open:
+      text: "Open Access"
+      class: "label-success"
+      label_html: <span class="label label-success">Open Access</span> Visible to the world.
+    authenticated:
+      text: "Tufts University"
+      class: "label-info"
+      label_html: "<span class=\"label label-info\">Tufts University</span> Visible to all Tufts University users."
