@@ -1,0 +1,15 @@
+<div class="input-group" <%  if index == 0 %> id="additional_<%= key.to_s %>_clone" <% end %>>
+  <div class="form-group">
+    <div class="radio-group">
+    <label class="radio">
+      <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC %>
+      <%= t('visibility.open.label_html') %>
+    </label>
+      </div><div class="radio-group">
+    <label class="radio">
+      <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED %>
+      <%= t('visibility.authenticated.label_html', institution: 'Tufts University') %>
+    </label>
+    </div>
+  </div>
+</div>
