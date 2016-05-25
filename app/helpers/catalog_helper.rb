@@ -13,6 +13,14 @@ module CatalogHelper
     content_tag(:span, document.workflow_status, class: css_classes)
   end
 
+  def visibility_indicator(document, options = {})
+    if document.visibility.downcase == 'open'
+      content_tag(:span, 'Open', class: ['label','label-success'])
+    else
+      content_tag(:span, 'Tufts University', class: ['label','label-info'])
+    end
+  end
+
   def enable_show_dl_link?(solr_doc)
     solr_doc.published? || solr_doc.workflow_status == :edited
   end
