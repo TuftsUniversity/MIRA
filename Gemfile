@@ -17,8 +17,6 @@ gem 'sanitize', '2.0.6'
 
 gem 'devise_ldap_authenticatable', '0.8.1'
 
-gem 'devise_ldap_authenticatable', '0.8.1'
-
 gem 'disable_assets_logger', group: :development
 
 gem 'sass-rails',   '~> 4.0.0'
@@ -71,7 +69,6 @@ end
 group :debug do
   gem 'launchy'
   gem 'byebug', require: false
-  gem 'ladle'
 end
 
 gem 'chronic' # for lib/tufts/model_methods.rb
