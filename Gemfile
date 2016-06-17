@@ -9,7 +9,7 @@ gem 'blacklight', '~> 5.7.1'
 gem 'rsolr', '1.0.10' # avoid a bunch of deprecation warnings. This can be removed when Active-Fedora is updated.
 gem 'active-fedora', '~> 7.1.1'
 gem 'hydra-editor', '~> 0.5.0'
-gem 'hydra-role-management', '0.2.0'
+gem 'hydra-role-management', '0.2.2'
 gem 'hydra-batch-edit', '1.1.1'
 gem 'qa', '0.5.0'
 
