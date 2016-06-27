@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.6'
 
-gem 'mysql2'
+gem 'mysql2', "~> 0.3.17"
 
 gem 'hydra-head', '~> 7.2.1'
 gem 'blacklight', '~> 5.7.1'
