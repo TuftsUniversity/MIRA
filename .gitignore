@@ -49,3 +49,5 @@ uploads
 # redis junk
 dump.rdb
 
+public/*
+utils/*
