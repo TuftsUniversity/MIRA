@@ -13,6 +13,10 @@ module CatalogHelper
     content_tag(:span, document.workflow_status, class: css_classes)
   end
 
+  def download_indicator(document, options = {})
+      content_tag(:span, document.download)
+  end
+
   def visibility_indicator(document, options = {})
     if document.visibility.downcase == 'open'
       content_tag(:span, 'Open', class: ['label','label-success'])

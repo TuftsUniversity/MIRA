@@ -1,0 +1,15 @@
+<div class="input-group" <%  if index == 0 %> id="additional_<%= key.to_s %>_clone" <% end %>>
+  <div class="form-group">
+    <div class="radio-group">
+    <label class="radio">
+      <%= f.radio_button :download, Tufts::Downloadable::DOWNLOADABLE_TEXT_PUBLIC %>
+      <%= t('download.allow.label_html') %>
+    </label>
+      </div><div class="radio-group">
+    <label class="radio">
+      <%= f.radio_button :download, Tufts::Downloadable::DOWNLOADABLE_TEXT_NO_LINK_SHOWN %>
+      <%= t('download.disallow.label_html') %>
+    </label>
+    </div>
+  </div>
+</div>

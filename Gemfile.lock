@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/TuftsUniversity/tufts_models.git
-  revision: 73bc6691f5556d684dab5bad54bc62f87e22a8c9
-  tag: 4.0.7
+  revision: f4169c7fb1b94f4d33fe9f429b835b00c28be486
+  tag: 4.0.9
   specs:
     tufts_models (0.0.1)
       active-fedora (~> 7.1)
@@ -266,7 +266,7 @@ GEM
     minitest (5.9.0)
     mono_logger (1.1.0)
     multi_json (1.12.1)
-    mysql2 (0.3.21)
+    mysql2 (0.3.17)
     net-http-persistent (2.9.4)
     net-ldap (0.5.1)
     net-scp (1.2.1)
