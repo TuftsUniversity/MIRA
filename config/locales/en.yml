@@ -56,6 +56,11 @@ en:
         TuftsRCR: 'Collection creator'
         TuftsTEI: 'TEI'
         TuftsVideo: 'Video'
+  download:
+    disallow:
+      label_html: Do not show a download link to any users
+    allow:
+      label_html: Show a download link to all users
   visibility:
     open:
       text: "Open Access"
