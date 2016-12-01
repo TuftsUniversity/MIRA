@@ -1,3 +1,4 @@
+require 'byebug'
 module CatalogHelper
   include Blacklight::CatalogHelperBehavior
 
@@ -11,6 +12,10 @@ module CatalogHelper
     css_classes << options[:class] if options[:class].present?
 
     content_tag(:span, document.workflow_status, class: css_classes)
+  end
+
+  def download_indicator(document, options = {})
+      content_tag(:span, document.download)
   end
 
   def visibility_indicator(document, options = {})
