@@ -92,7 +92,7 @@ class BuildRecordService
       # query the node for this attribute
       content = node_content(xpath, namespaces, record_class.multiple?(attribute_name))
 
-      content.blank? ? result : result.merge(attribute_name => content)
+      content.blank? ? result : result.merge(attribute_name => clean_attrs(content))
     end
     attributes.merge(rels_ext)
   end
@@ -125,6 +125,23 @@ class BuildRecordService
   def node_content(xpath, namespaces={}, multiple=false)
     content = node.xpath(xpath, namespaces).map(&:content)
     multiple ? content : content.first
+  end
+
+  def clean_attrs(content)
+    if content.kind_of?(Array)
+      content.each_with_index do |attr, index|
+        content[index] = clean_attr(attr)
+      end
+    else
+      content = clean_attr(content)
+    end
+
+    content
+  end
+
+  def clean_attr(attr)
+    # Remove multiple whitespace and/or html tags.
+    Sanitize.clean(attr).gsub(/\s+/, " ")
   end
 
 end
