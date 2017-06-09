@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'hyrax', github: 'samvera-labs/hyrax', ref: '752022fba12'
 gem 'rails', '>= 5.0.0', '< 5.1'
 
 gem 'tufts_models_ng', github: 'no-reply/tufts_concerns', branch: 'hyrax'
