@@ -31,7 +31,6 @@ end
 
 
 namespace :export do
-
   desc 'Export deposit types to a CSV file'
   task :deposit_types, [:export_dir] => :environment do |t, args|
     require 'import_export/deposit_type_exporter'
@@ -40,5 +39,4 @@ namespace :export do
     exporter.export_to_csv
     puts "Export finished: #{exporter.filename}"
   end
-
 end

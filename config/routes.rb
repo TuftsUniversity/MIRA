@@ -1,9 +1,6 @@
 ALLOW_DOTS ||= /[\w\-.:]+/
 
 Tufts::Application.routes.draw do
-
-  blacklight_for :catalog, constraints: { id: ALLOW_DOTS }
-
   get 'advanced/facet' => 'advanced#facet', as: 'facet_advanced_search'
 
   # This is from Blacklight::Routes#solr_document, but with the constraints added which allows periods in the id
@@ -29,7 +26,8 @@ Tufts::Application.routes.draw do
       get 'license'
     end
   end
-  mount HydraEditor::Engine => '/'
+
+  mount Hyrax::Engine => '/'
   post 'records/:id/publish', to: 'records#publish', as: 'publish_record', constraints: { id: ALLOW_DOTS }
   post 'records/:id/unpublish', to: 'records#unpublish', as: 'unpublish_record', constraints: { id: ALLOW_DOTS }
   post 'records/:id/revert', to: 'records#revert', as: 'revert_record', constraints: { id: ALLOW_DOTS }
@@ -61,6 +59,7 @@ Tufts::Application.routes.draw do
   end
 
   mount Qa::Engine => '/qa'
+  mount Blacklight::Engine => '/'
 
   resources :generics, only: [:edit, :update], constraints: { id: ALLOW_DOTS }
 
