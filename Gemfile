@@ -60,6 +60,8 @@ group :debug do
   gem 'byebug', require: false
 end
 
+gem 'byebug'
+
 gem 'chronic' # for lib/tufts/model_methods.rb
 gem 'titleize' # for lib/tufts/model_methods.rb
 gem 'settingslogic' # for settings
