@@ -3,8 +3,12 @@ ALLOW_DOTS ||= /[\w\-.:]+/
 Tufts::Application.routes.draw do
   get 'advanced/facet' => 'advanced#facet', as: 'facet_advanced_search'
 
-  # This is from Blacklight::Routes#solr_document, but with the constraints added which allows periods in the id
-  resources :solr_document, path: 'catalog', controller: 'catalog', only: [:show, :update]
+  concern :searchable, Blacklight::Routes::Searchable.new
+
+  resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
+    concerns :searchable
+  end
+
   get 'downloads/:id(/:offset)', to: 'downloads#show', constraints: { id: ALLOW_DOTS, offset: /\d+/ }, as: 'download'
 
   resources :templates, only: [:index, :create, :destroy]
