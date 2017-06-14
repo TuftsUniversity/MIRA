@@ -1,13 +1,14 @@
 ALLOW_DOTS ||= /[\w\-.:]+/
 
 Tufts::Application.routes.draw do
-
-  blacklight_for :catalog, constraints: { id: ALLOW_DOTS }
-
   get 'advanced/facet' => 'advanced#facet', as: 'facet_advanced_search'
 
-  # This is from Blacklight::Routes#solr_document, but with the constraints added which allows periods in the id
-  resources :solr_document, path: 'catalog', controller: 'catalog', only: [:show, :update]
+  concern :searchable, Blacklight::Routes::Searchable.new
+
+  resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
+    concerns :searchable
+  end
+
   get 'downloads/:id(/:offset)', to: 'downloads#show', constraints: { id: ALLOW_DOTS, offset: /\d+/ }, as: 'download'
 
   resources :templates, only: [:index, :create, :destroy]
@@ -29,7 +30,8 @@ Tufts::Application.routes.draw do
       get 'license'
     end
   end
-  mount HydraEditor::Engine => '/'
+
+  mount Hyrax::Engine => '/'
   post 'records/:id/publish', to: 'records#publish', as: 'publish_record', constraints: { id: ALLOW_DOTS }
   post 'records/:id/unpublish', to: 'records#unpublish', as: 'unpublish_record', constraints: { id: ALLOW_DOTS }
   post 'records/:id/revert', to: 'records#revert', as: 'revert_record', constraints: { id: ALLOW_DOTS }
@@ -61,9 +63,15 @@ Tufts::Application.routes.draw do
   end
 
   mount Qa::Engine => '/qa'
+  mount Blacklight::Engine => '/'
 
   resources :generics, only: [:edit, :update], constraints: { id: ALLOW_DOTS }
 
   devise_for :users
+
+  devise_scope :user do
+    get 'login', to: 'devise/sessions#new'
+  end
+
   mount Hydra::RoleManagement::Engine => '/'
 end

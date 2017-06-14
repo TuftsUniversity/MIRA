@@ -21,7 +21,6 @@
 //= require typeahead.bundle
 //= require hydra-editor/hydra-editor
 //= require jquery-fileupload
-//= require batch_edit
 //= require attachments
 //= require handlebars-v4.0.5
 //= require contribute/deposit_view
