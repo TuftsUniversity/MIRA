@@ -1,14 +1,7 @@
 GIT
-  remote: git://github.com/jcoyne/handle.git
-  revision: 8ae4cebd5ada4fc138a58dba3899a0507f6141cc
-  ref: 8ae4ceb
-  specs:
-    handle-system (0.1.0)
-
-GIT
-  remote: git://github.com/no-reply/tufts_concerns.git
-  revision: 962a59c75d69b7b709edccad84b1628e2c40e225
-  branch: hyrax
+  remote: git://github.com/curationexperts/tufts_concerns.git
+  revision: f28c1dc2449b8947b022b458687f98ecb7eca04f
+  branch: develop
   specs:
     tufts_models_ng (0.0.1)
       blacklight (~> 6.9.0)
@@ -22,13 +15,20 @@ GIT
       hyrax (>= 1.0.0)
       jbuilder (~> 2.0)
       jquery-rails
-      rails (>= 4.2.6)
+      rails (~> 5.0.1)
       resque-status
       rsolr (>= 1.0, < 3.0)
-      sass-rails (>= 5.0)
+      sass-rails (~> 5.0)
       sqlite3
       turbolinks
       uglifier (>= 1.3.0)
+
+GIT
+  remote: git://github.com/jcoyne/handle.git
+  revision: 8ae4cebd5ada4fc138a58dba3899a0507f6141cc
+  ref: 8ae4ceb
+  specs:
+    handle-system (0.1.0)
 
 GIT
   remote: git://github.com/samvera-labs/hyrax.git
