@@ -27,16 +27,16 @@ class GisPoster < GenericTischDeposit
 
    case @term
      when 'Fall'
-       date_created = @year +'-09-01 00:00:00 -0400'
+       date = @year +'-09-01 00:00:00 -0400'
      when 'Summer'
-       date_created = @year +'-06-01 00:00:00 -0400'
+       date = @year +'-06-01 00:00:00 -0400'
      when 'Spring'
-       date_created = @year +'-01-01 00:00:00 -0500'
+       date = @year +'-01-01 00:00:00 -0500'
      else
-       date_created = @year +'-01-01 00:00:00 -0500'
+       date = @year +'-01-01 00:00:00 -0500'
    end
 
-   @tufts_pdf.date_created= date_created
+   @tufts_pdf.date= date
    insert_rels_ext_relationships
 
 #      if @tufts_pdf.class.defined_attributes[attribute].multiple
