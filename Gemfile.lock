@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/TuftsUniversity/tufts_models.git
-  revision: 293eb4c684126a300a5c45f9fd9d4012b1461189
-  branch: oai_dc
+  revision: 5111887f8f631a53903f28e8947a9e712705861e
+  tag: 4.1.0-prelease7
   specs:
     tufts_models (0.0.1)
       active-fedora (~> 7.1)
@@ -562,6 +562,3 @@ DEPENDENCIES
   tufts_models!
   uglifier (>= 1.3.0)
   webmock
-
-BUNDLED WITH
-   1.12.0
